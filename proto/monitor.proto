@@ -1,0 +1,21 @@
+// proto/sso/sso.proto
+// Версия ProtoBuf
+syntax = "proto3";
+// Текущий пакет - указывает пространство имен для сервиса и сообщений. Помогает избегать конфликтов имен.
+package auth;
+
+
+service Monitor {
+  rpc GetAll () returns (AllResponse);
+}
+
+message AllResponse{
+  float SysLoadAverage = 1;
+  int32 CpuAverage = 2;
+  int32 DiskTps = 3;
+  int32 DiskRwPs = 4;
+  int32 NetTTProtocol = 5;
+  int32 NetTTTraffic = 6;
+  int32 NetTcpListener = 7;
+  int32 NetConnectCount = 8;
+}
