@@ -2,11 +2,20 @@
 // Версия ProtoBuf
 syntax = "proto3";
 // Текущий пакет - указывает пространство имен для сервиса и сообщений. Помогает избегать конфликтов имен.
-package auth;
+package monitor;
 
+option go_package = ".;monitor_v1";
 
 service Monitor {
-  rpc GetAll () returns (AllResponse);
+  rpc GetAll (Request) returns (AllResponse);
+  rpc GetSysLoadAverage (Request) returns (SysLoadAverageResponse);
+  rpc GetCpuAverageResponse (Request) returns (CpuAverageResponse);
+  rpc GetDiskTpsResponse (Request) returns (DiskTpsResponse);
+  rpc GetDiskRwPsResponse (Request) returns (DiskRwPsResponse);
+  rpc GetNetTTProtocolResponse (Request) returns (NetTTProtocolResponse);
+  rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
+  rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
+  rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
 }
 
 message AllResponse{
@@ -19,3 +28,37 @@ message AllResponse{
   int32 NetTcpListener = 7;
   int32 NetConnectCount = 8;
 }
+
+message SysLoadAverageResponse{
+  float SysLoadAverage = 1;
+}
+
+message CpuAverageResponse{
+  int32 CpuAverage = 1;
+}
+
+message DiskTpsResponse{
+  int32 DiskTps = 1;
+}
+
+message DiskRwPsResponse{
+  int32 DiskRwPs = 1;
+}
+
+message NetTTProtocolResponse{
+  int32 NetTTProtocol = 1;
+}
+
+message NetTTTrafficResponse{
+  int32 NetTTTraffic = 1;
+}
+
+message NetTcpListenerResponse{
+  int32 NetTcpListener = 1;
+}
+
+message NetConnectCountResponse{
+  int32 NetConnectCount = 1;
+}
+
+message Request{}
