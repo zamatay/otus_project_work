@@ -1,10 +1,13 @@
 package sysInfo
 
 import (
+	"bufio"
+	"fmt"
 	"io"
 	"log"
 	"os"
 	"os/exec"
+	"sync"
 )
 
 func GetByPath[T any](path string, f func(file io.Reader) (*T, error)) (*T, error) {
@@ -24,4 +27,23 @@ func ExecuteCommand(command string, args ...string) []byte {
 		log.Println(err)
 	}
 	return stdOut
+}
+
+func AsyncExecuteCommand(command string, args ...string) {
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+	cmd := exec.Command(command, args...)
+	cmdReader, err := cmd.StdoutPipe()
+	if err != nil {
+		log.Fatal(err)
+	}
+	scanner := bufio.NewScanner(cmdReader)
+	go func() {
+		for scanner.Scan() {
+			fmt.Println(scanner.Text())
+		}
+		wg.Done()
+	}()
+	cmd.Output()
+	wg.Wait()
 }

@@ -16,6 +16,11 @@ service Monitor {
   rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
   rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
   rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
+  rpc Connect (RequestConnect) returns (OkResponse);
+}
+
+message OkResponse {
+  bool Connected = 1;
 }
 
 message AllResponse{
@@ -62,3 +67,8 @@ message NetConnectCountResponse{
 }
 
 message Request{}
+
+message RequestConnect{
+  int32 EachNSec = 1;
+  int32 ForTheMSec = 2;
+}

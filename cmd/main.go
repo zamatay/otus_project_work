@@ -1,36 +1,22 @@
 package main
 
 import (
-	"fmt"
-	sysInfo "project_work/internal/collector/linux"
+	"context"
+	"project_work/internal/app"
+	"project_work/internal/config"
+	"project_work/internal/log"
 )
 
 func main() {
-	//cfg := config.Load()
+	ctx, cancelFn := context.WithCancel(context.Background())
+
+	cfg := config.Load()
 	//
-	//initialization.SetupLogger(cfg.Env)
+	log.SetupLogger(cfg.Env)
+	app.InitService()
 
-	memory, _ := sysInfo.GetMemory()
-	fmt.Printf("%t, %v\n", memory, memory)
-
-	loadAVG, _ := sysInfo.GetLoadAVG()
-	fmt.Printf("%v\n", loadAVG)
-
-	processorStat, _ := sysInfo.GetProcessorStat()
-	fmt.Printf("%v\n", processorStat)
-
-	//diskInfo, _ := sysInfo.GetDiskInfo()
-	//fmt.Printf("%v\n", diskInfo)
-
-	sysInfo.GetDiskInfoDev()
-
-	ioStat := sysInfo.GetIOStat()
-
-	diskInfo := ioStat.Sysstat.Hosts[0].Statistics[0].Disk
-	cpuAvg := ioStat.Sysstat.Hosts[0].Statistics[0].AvgCPU
-
-	fmt.Printf("%v\n%v\n", diskInfo, cpuAvg)
-
-	diskInfo3, _ := sysInfo.GetDiskInfo3()
-	fmt.Printf("%v/n", diskInfo3)
+	if err := app.ServiceRun(ctx, cancelFn); err != nil {
+		log.Logger.Log.Error("Ошибка при старте сервиса", "Error", err)
+		return
+	}
 }

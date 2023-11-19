@@ -4,25 +4,20 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"project_work/internal/domain/models"
 )
 
-type LoadAVG struct {
-	minute   float64
-	minute5  float64
-	Minute10 float64
+func GetLoadAVG() (*models.LoadAVG, error) {
+	return GetByPath[models.LoadAVG]("/proc/loadavg", collectLoadAvg)
 }
 
-func GetLoadAVG() (*LoadAVG, error) {
-	return GetByPath[LoadAVG]("/proc/loadavg", collectLoadAvg)
-}
-
-func collectLoadAvg(file io.Reader) (*LoadAVG, error) {
-	var result LoadAVG
+func collectLoadAvg(file io.Reader) (*models.LoadAVG, error) {
+	var result models.LoadAVG
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
 		fmt.Sscanf(string(line), "%f %f %f %d/%d %d",
-			&result.minute, &result.minute5, &result.Minute10)
+			&result.Minute, &result.Minute5, &result.Minute10)
 	}
 	return &result, nil
 }

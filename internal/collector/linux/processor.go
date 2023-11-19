@@ -4,27 +4,19 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"project_work/internal/domain/models"
 )
 
-type ProcessorStat struct {
-	cpu    string
-	User   int64
-	Nice   int64
-	System int64
-	Idle   int64
+func GetProcessorStat() (*models.CpuStat, error) {
+	return GetByPath[models.CpuStat]("/proc/stat", collectProcessor)
 }
 
-func GetProcessorStat() (*ProcessorStat, error) {
-	return GetByPath[ProcessorStat]("/proc/stat", collectProcessor)
-}
-
-func collectProcessor(file io.Reader) (*ProcessorStat, error) {
-	var result ProcessorStat
+func collectProcessor(file io.Reader) (*models.CpuStat, error) {
+	var result models.CpuStat
 	scanner := bufio.NewScanner(file)
 	scanner.Scan()
 	line := scanner.Text()
-	fmt.Println(line)
 	fmt.Sscanf(string(line), "%s %d %d %d %d %f %f %f",
-		&result.cpu, &result.User, &result.Nice, &result.System, &result.Idle)
+		&result.Cpu, &result.User, &result.Nice, &result.System, &result.Idle)
 	return &result, nil
 }

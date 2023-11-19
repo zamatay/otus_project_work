@@ -8,17 +8,12 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"project_work/internal/domain/models"
 	"strconv"
 	"strings"
 )
 
-type Memory struct {
-	Total, Used, Buffers, Cached, Free, Available, Active, Inactive, SwapTotal, SwapUsed,
-	SwapCached, SwapFree, Mapped, Shmem, Slab, PageTables, Committed, VmallocUsed uint64
-	MemAvailableEnabled bool
-}
-
-func GetMemory() (*Memory, error) {
+func GetMemory() (*models.Memory, error) {
 	file, err := os.Open("/proc/meminfo")
 	if err != nil {
 		return nil, err
@@ -27,9 +22,9 @@ func GetMemory() (*Memory, error) {
 	return collectMemoryStats(file)
 }
 
-func collectMemoryStats(out io.Reader) (*Memory, error) {
+func collectMemoryStats(out io.Reader) (*models.Memory, error) {
 	scanner := bufio.NewScanner(out)
-	var memory Memory
+	var memory models.Memory
 	memStats := map[string]*uint64{
 		"MemTotal":     &memory.Total,
 		"MemFree":      &memory.Free,

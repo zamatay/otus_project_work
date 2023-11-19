@@ -1,4 +1,4 @@
-package init
+package log
 
 import (
 	"log/slog"
@@ -7,30 +7,31 @@ import (
 
 const (
 	envLocal = "local"
-	envProd  = "prod"
 	envDev   = "dev"
+	envProd  = "prod"
 )
 
-var log *slog.Logger
+type Log struct {
+	Log *slog.Logger
+}
+
+var (
+	Logger Log
+)
 
 func SetupLogger(env string) {
-
 	switch env {
 	case envLocal:
-		log = slog.New(
+		Logger.Log = slog.New(
 			slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug}),
 		)
 	case envDev:
-		log = slog.New(
+		Logger.Log = slog.New(
 			slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug}),
 		)
 	case envProd:
-		log = slog.New(
+		Logger.Log = slog.New(
 			slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}),
 		)
 	}
-}
-
-func Logger() *slog.Logger {
-	return log
 }

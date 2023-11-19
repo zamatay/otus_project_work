@@ -23,7 +23,7 @@ type GRPCConfig struct {
 func Load() *Config {
 	configPath := fetchConfigPath()
 	if configPath == "" {
-		panic("config path is empty")
+		configPath = "./config/config_local.yaml"
 	}
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
