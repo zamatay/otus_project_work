@@ -14,8 +14,9 @@ var (
 	serviceSysInfo *sysInfo.SysInfoSrv
 )
 
-func InitService() {
+func InitService() *sysInfo.SysInfoSrv {
 	serviceSysInfo = sysInfo.NewSysInfoSrv()
+	return serviceSysInfo
 }
 
 func ServiceRun(ctx context.Context, cancelFunc context.CancelFunc) error {

@@ -64,11 +64,11 @@ func snapshotSysInfo() (*models.SysMonitor, error) {
 	}
 
 	//диск 2
-	if d, err := sysInfo.GetDiskInfo(); err == nil {
-		result.DiskUsed = *d
-	} else {
-		errors.Join(errorrProcess, err)
-	}
+	//if d, err := sysInfo.GetDiskInfo(); err == nil {
+	//	result.DiskUsed = *d
+	//} else {
+	//	errors.Join(errorrProcess, err)
+	//}
 
 	//диск 3
 	if d, err := sysInfo.GetDiskInfo3(); err == nil {

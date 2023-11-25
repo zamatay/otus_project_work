@@ -3,16 +3,16 @@ package config
 import (
 	"flag"
 	"github.com/ilyakaznacheev/cleanenv"
-	"log"
+	log2 "log"
 	"os"
+	"project_work/internal/log"
 	"time"
 )
 
 type Config struct {
-	Env            string        `yaml:"env" env-default:"local"`
-	Grpc           GRPCConfig    `yaml:"grpc"`
-	MigrationsPath string        `yaml:"migrations_path"`
-	TokenTTL       time.Duration `yaml:"token_ttl"`
+	Env      string        `yaml:"env" env-default:"local"`
+	Grpc     GRPCConfig    `yaml:"grpc"`
+	TokenTTL time.Duration `yaml:"token_ttl"`
 }
 
 type GRPCConfig struct {
@@ -23,16 +23,18 @@ type GRPCConfig struct {
 func Load() *Config {
 	configPath := fetchConfigPath()
 	if configPath == "" {
-		configPath = "./config/config_local.yaml"
+		configPath = "./server/config/config_local.yaml"
 	}
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		log.Panicf("config file does not exists: %s", configPath)
+		log.Logger.Log.Error("config file does not exists: %s", configPath)
+		log.Logger.Log.Fatal(err)
 	}
 
 	var cfg Config
 	if err := cleanenv.ReadConfig(configPath, &cfg); err != nil {
-		log.Panicf("Config file is empty: %s", err.Error())
+		log.Logger.Log.Error("Config file is empty: %s", err.Error())
+		log2.Fatal(err)
 	}
 
 	return &cfg

@@ -7,16 +7,16 @@ package monitor;
 option go_package = ".;monitor_v1";
 
 service Monitor {
-  rpc GetAll (Request) returns (AllResponse);
-  rpc GetSysLoadAverage (Request) returns (SysLoadAverageResponse);
-  rpc GetCpuAverageResponse (Request) returns (CpuAverageResponse);
-  rpc GetDiskTpsResponse (Request) returns (DiskTpsResponse);
-  rpc GetDiskRwPsResponse (Request) returns (DiskRwPsResponse);
-  rpc GetNetTTProtocolResponse (Request) returns (NetTTProtocolResponse);
-  rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
-  rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
-  rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
-  rpc Connect (RequestConnect) returns (OkResponse);
+//  rpc GetAll (Request) returns (AllResponse);
+//  rpc GetSysLoadAverage (Request) returns (SysLoadAverageResponse);
+//  rpc GetCpuAverageResponse (Request) returns (CpuAverageResponse);
+//  rpc GetDiskTpsResponse (Request) returns (DiskTpsResponse);
+//  rpc GetDiskRwPsResponse (Request) returns (DiskRwPsResponse);
+//  rpc GetNetTTProtocolResponse (Request) returns (NetTTProtocolResponse);
+//  rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
+//  rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
+//  rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
+  rpc Connect (RequestConnect) returns (stream AllResponse);
 }
 
 message OkResponse {
