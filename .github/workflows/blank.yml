@@ -3,7 +3,7 @@ name: Otus project work
 on:
   push:
     branches:
-      - De*
+      - de*
 
 env:
   GO111MODULE: "on"
