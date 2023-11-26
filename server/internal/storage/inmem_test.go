@@ -47,3 +47,21 @@ func Test_getDiskNode(t *testing.T) {
 		})
 	}
 }
+
+func Test_getNet(t *testing.T) {
+	type args struct {
+		net []models.NetInfo
+	}
+	tests := []struct {
+		name string
+		args args
+		want *monitor_v1.NetStat
+	}{}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := getNet(tt.args.net); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getNet() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
