@@ -67,3 +67,4 @@ linters:
     - unparam
     - unused
     - whitespace
+
