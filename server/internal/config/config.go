@@ -3,14 +3,14 @@ package config
 import (
 	"flag"
 	"github.com/ilyakaznacheev/cleanenv"
-	log2 "log"
+	baseLog "log"
 	"os"
 	"project_work/internal/log"
 	"time"
 )
 
 type Config struct {
-	Env      string        `yaml:"env" env-default:"local"`
+	DevEnv   string        `yaml:"env" env-default:"local"`
 	Grpc     GRPCConfig    `yaml:"grpc"`
 	TokenTTL time.Duration `yaml:"token_ttl"`
 }
@@ -27,13 +27,13 @@ func Load() *Config {
 	}
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		log2.Fatal(err)
+		baseLog.Fatal(err)
 	}
 
 	var cfg Config
 	if err := cleanenv.ReadConfig(configPath, &cfg); err != nil {
 		log.Logger.Log.Error("Config file is empty: %s", err.Error())
-		log2.Fatal(err)
+		baseLog.Fatal(err)
 	}
 
 	return &cfg

@@ -23,7 +23,7 @@ func GetDiskInfo() (*map[string]models.DiskInfo, error) {
 	return GetByPath[map[string]models.DiskInfo]("/proc/diskstats", collectDisk)
 }
 
-func GetDiskInfo3() (*map[string]models.DiskInfoN, error) {
+func GetDiskInfoSecondary() (*map[string]models.DiskInfoN, error) {
 	output := ExecuteCommand("df", "-i")
 	return collectDisk3(bytes.NewBuffer(output))
 }

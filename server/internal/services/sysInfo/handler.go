@@ -63,15 +63,8 @@ func snapshotSysInfo() (*models.SysMonitor, error) {
 		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
-	//диск 2
-	//if d, err := sysInfo.GetDiskInfo(); err == nil {
-	//	result.DiskUsed = *d
-	//} else {
-	//	errors.Join(errorrProcess, err)
-	//}
-
 	//диск 3
-	if d, err := sysInfo.GetDiskInfo3(); err == nil {
+	if d, err := sysInfo.GetDiskInfoSecondary(); err == nil {
 		result.DiskUsedN = *d
 	} else {
 		errorrProcess = errors.Join(errorrProcess, err)
