@@ -25,6 +25,455 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CpuInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User   int32 `protobuf:"varint,1,opt,name=user,proto3" json:"user,omitempty"`
+	System int32 `protobuf:"varint,2,opt,name=system,proto3" json:"system,omitempty"`
+	Idle   int32 `protobuf:"varint,3,opt,name=idle,proto3" json:"idle,omitempty"`
+}
+
+func (x *CpuInfo) Reset() {
+	*x = CpuInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CpuInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CpuInfo) ProtoMessage() {}
+
+func (x *CpuInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CpuInfo.ProtoReflect.Descriptor instead.
+func (*CpuInfo) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CpuInfo) GetUser() int32 {
+	if x != nil {
+		return x.User
+	}
+	return 0
+}
+
+func (x *CpuInfo) GetSystem() int32 {
+	if x != nil {
+		return x.System
+	}
+	return 0
+}
+
+func (x *CpuInfo) GetIdle() int32 {
+	if x != nil {
+		return x.Idle
+	}
+	return 0
+}
+
+type DiskTps struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DiskDevice string  `protobuf:"bytes,1,opt,name=DiskDevice,proto3" json:"DiskDevice,omitempty"`
+	Tps        float32 `protobuf:"fixed32,2,opt,name=Tps,proto3" json:"Tps,omitempty"`
+	KBReadS    float32 `protobuf:"fixed32,3,opt,name=KBReadS,proto3" json:"KBReadS,omitempty"`
+	KBWrtnS    float32 `protobuf:"fixed32,4,opt,name=KBWrtnS,proto3" json:"KBWrtnS,omitempty"`
+}
+
+func (x *DiskTps) Reset() {
+	*x = DiskTps{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DiskTps) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiskTps) ProtoMessage() {}
+
+func (x *DiskTps) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiskTps.ProtoReflect.Descriptor instead.
+func (*DiskTps) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *DiskTps) GetDiskDevice() string {
+	if x != nil {
+		return x.DiskDevice
+	}
+	return ""
+}
+
+func (x *DiskTps) GetTps() float32 {
+	if x != nil {
+		return x.Tps
+	}
+	return 0
+}
+
+func (x *DiskTps) GetKBReadS() float32 {
+	if x != nil {
+		return x.KBReadS
+	}
+	return 0
+}
+
+func (x *DiskTps) GetKBWrtnS() float32 {
+	if x != nil {
+		return x.KBWrtnS
+	}
+	return 0
+}
+
+type DiskUsedFS struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Used        string `protobuf:"bytes,1,opt,name=used,proto3" json:"used,omitempty"`
+	Available   string `protobuf:"bytes,2,opt,name=available,proto3" json:"available,omitempty"`
+	UsedPercent string `protobuf:"bytes,3,opt,name=usedPercent,proto3" json:"usedPercent,omitempty"`
+}
+
+func (x *DiskUsedFS) Reset() {
+	*x = DiskUsedFS{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DiskUsedFS) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiskUsedFS) ProtoMessage() {}
+
+func (x *DiskUsedFS) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiskUsedFS.ProtoReflect.Descriptor instead.
+func (*DiskUsedFS) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *DiskUsedFS) GetUsed() string {
+	if x != nil {
+		return x.Used
+	}
+	return ""
+}
+
+func (x *DiskUsedFS) GetAvailable() string {
+	if x != nil {
+		return x.Available
+	}
+	return ""
+}
+
+func (x *DiskUsedFS) GetUsedPercent() string {
+	if x != nil {
+		return x.UsedPercent
+	}
+	return ""
+}
+
+type DiskInfoN struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uses       string `protobuf:"bytes,1,opt,name=uses,proto3" json:"uses,omitempty"`
+	Free       string `protobuf:"bytes,2,opt,name=free,proto3" json:"free,omitempty"`
+	UsePercent string `protobuf:"bytes,3,opt,name=usePercent,proto3" json:"usePercent,omitempty"`
+}
+
+func (x *DiskInfoN) Reset() {
+	*x = DiskInfoN{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DiskInfoN) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DiskInfoN) ProtoMessage() {}
+
+func (x *DiskInfoN) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DiskInfoN.ProtoReflect.Descriptor instead.
+func (*DiskInfoN) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DiskInfoN) GetUses() string {
+	if x != nil {
+		return x.Uses
+	}
+	return ""
+}
+
+func (x *DiskInfoN) GetFree() string {
+	if x != nil {
+		return x.Free
+	}
+	return ""
+}
+
+func (x *DiskInfoN) GetUsePercent() string {
+	if x != nil {
+		return x.UsePercent
+	}
+	return ""
+}
+
+type StateInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	State string `protobuf:"bytes,1,opt,name=state,proto3" json:"state,omitempty"`
+	Count int32  `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+}
+
+func (x *StateInfo) Reset() {
+	*x = StateInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StateInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StateInfo) ProtoMessage() {}
+
+func (x *StateInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StateInfo.ProtoReflect.Descriptor instead.
+func (*StateInfo) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *StateInfo) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *StateInfo) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+type NetInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	State        string `protobuf:"bytes,1,opt,name=State,proto3" json:"State,omitempty"`
+	RecvQ        int32  `protobuf:"varint,2,opt,name=RecvQ,proto3" json:"RecvQ,omitempty"`
+	SendQ        int32  `protobuf:"varint,3,opt,name=SendQ,proto3" json:"SendQ,omitempty"`
+	LocalAddress string `protobuf:"bytes,4,opt,name=LocalAddress,proto3" json:"LocalAddress,omitempty"`
+	PeerAddress  string `protobuf:"bytes,5,opt,name=PeerAddress,proto3" json:"PeerAddress,omitempty"`
+}
+
+func (x *NetInfo) Reset() {
+	*x = NetInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *NetInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetInfo) ProtoMessage() {}
+
+func (x *NetInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetInfo.ProtoReflect.Descriptor instead.
+func (*NetInfo) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *NetInfo) GetState() string {
+	if x != nil {
+		return x.State
+	}
+	return ""
+}
+
+func (x *NetInfo) GetRecvQ() int32 {
+	if x != nil {
+		return x.RecvQ
+	}
+	return 0
+}
+
+func (x *NetInfo) GetSendQ() int32 {
+	if x != nil {
+		return x.SendQ
+	}
+	return 0
+}
+
+func (x *NetInfo) GetLocalAddress() string {
+	if x != nil {
+		return x.LocalAddress
+	}
+	return ""
+}
+
+func (x *NetInfo) GetPeerAddress() string {
+	if x != nil {
+		return x.PeerAddress
+	}
+	return ""
+}
+
+type NetStat struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	NetInfos   []*NetInfo   `protobuf:"bytes,1,rep,name=NetInfos,proto3" json:"NetInfos,omitempty"`
+	StateInfos []*StateInfo `protobuf:"bytes,2,rep,name=StateInfos,proto3" json:"StateInfos,omitempty"`
+}
+
+func (x *NetStat) Reset() {
+	*x = NetStat{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_monitor_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *NetStat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NetStat) ProtoMessage() {}
+
+func (x *NetStat) ProtoReflect() protoreflect.Message {
+	mi := &file_monitor_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NetStat.ProtoReflect.Descriptor instead.
+func (*NetStat) Descriptor() ([]byte, []int) {
+	return file_monitor_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *NetStat) GetNetInfos() []*NetInfo {
+	if x != nil {
+		return x.NetInfos
+	}
+	return nil
+}
+
+func (x *NetStat) GetStateInfos() []*StateInfo {
+	if x != nil {
+		return x.StateInfos
+	}
+	return nil
+}
+
 type OkResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -36,7 +485,7 @@ type OkResponse struct {
 func (x *OkResponse) Reset() {
 	*x = OkResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[0]
+		mi := &file_monitor_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -49,7 +498,7 @@ func (x *OkResponse) String() string {
 func (*OkResponse) ProtoMessage() {}
 
 func (x *OkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[0]
+	mi := &file_monitor_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -62,7 +511,7 @@ func (x *OkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OkResponse.ProtoReflect.Descriptor instead.
 func (*OkResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{0}
+	return file_monitor_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *OkResponse) GetConnected() bool {
@@ -77,20 +526,18 @@ type AllResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SysLoadAverage  float32 `protobuf:"fixed32,1,opt,name=SysLoadAverage,proto3" json:"SysLoadAverage,omitempty"`
-	CpuAverage      int32   `protobuf:"varint,2,opt,name=CpuAverage,proto3" json:"CpuAverage,omitempty"`
-	DiskTps         int32   `protobuf:"varint,3,opt,name=DiskTps,proto3" json:"DiskTps,omitempty"`
-	DiskRwPs        int32   `protobuf:"varint,4,opt,name=DiskRwPs,proto3" json:"DiskRwPs,omitempty"`
-	NetTTProtocol   int32   `protobuf:"varint,5,opt,name=NetTTProtocol,proto3" json:"NetTTProtocol,omitempty"`
-	NetTTTraffic    int32   `protobuf:"varint,6,opt,name=NetTTTraffic,proto3" json:"NetTTTraffic,omitempty"`
-	NetTcpListener  int32   `protobuf:"varint,7,opt,name=NetTcpListener,proto3" json:"NetTcpListener,omitempty"`
-	NetConnectCount int32   `protobuf:"varint,8,opt,name=NetConnectCount,proto3" json:"NetConnectCount,omitempty"`
+	SysLoadAverage float32       `protobuf:"fixed32,1,opt,name=SysLoadAverage,proto3" json:"SysLoadAverage,omitempty"`
+	CpuAverage     *CpuInfo      `protobuf:"bytes,2,opt,name=CpuAverage,proto3" json:"CpuAverage,omitempty"`
+	DiskTps        []*DiskTps    `protobuf:"bytes,3,rep,name=DiskTps,proto3" json:"DiskTps,omitempty"`
+	DiskRwPs       []*DiskUsedFS `protobuf:"bytes,4,rep,name=DiskRwPs,proto3" json:"DiskRwPs,omitempty"`
+	DiskInfoN      []*DiskInfoN  `protobuf:"bytes,5,rep,name=DiskInfoN,proto3" json:"DiskInfoN,omitempty"`
+	Net            *NetStat      `protobuf:"bytes,6,opt,name=Net,proto3" json:"Net,omitempty"`
 }
 
 func (x *AllResponse) Reset() {
 	*x = AllResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[1]
+		mi := &file_monitor_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -103,7 +550,7 @@ func (x *AllResponse) String() string {
 func (*AllResponse) ProtoMessage() {}
 
 func (x *AllResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[1]
+	mi := &file_monitor_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116,7 +563,7 @@ func (x *AllResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllResponse.ProtoReflect.Descriptor instead.
 func (*AllResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{1}
+	return file_monitor_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *AllResponse) GetSysLoadAverage() float32 {
@@ -126,429 +573,39 @@ func (x *AllResponse) GetSysLoadAverage() float32 {
 	return 0
 }
 
-func (x *AllResponse) GetCpuAverage() int32 {
+func (x *AllResponse) GetCpuAverage() *CpuInfo {
 	if x != nil {
 		return x.CpuAverage
 	}
-	return 0
+	return nil
 }
 
-func (x *AllResponse) GetDiskTps() int32 {
+func (x *AllResponse) GetDiskTps() []*DiskTps {
 	if x != nil {
 		return x.DiskTps
 	}
-	return 0
+	return nil
 }
 
-func (x *AllResponse) GetDiskRwPs() int32 {
+func (x *AllResponse) GetDiskRwPs() []*DiskUsedFS {
 	if x != nil {
 		return x.DiskRwPs
 	}
-	return 0
+	return nil
 }
 
-func (x *AllResponse) GetNetTTProtocol() int32 {
+func (x *AllResponse) GetDiskInfoN() []*DiskInfoN {
 	if x != nil {
-		return x.NetTTProtocol
+		return x.DiskInfoN
 	}
-	return 0
+	return nil
 }
 
-func (x *AllResponse) GetNetTTTraffic() int32 {
+func (x *AllResponse) GetNet() *NetStat {
 	if x != nil {
-		return x.NetTTTraffic
+		return x.Net
 	}
-	return 0
-}
-
-func (x *AllResponse) GetNetTcpListener() int32 {
-	if x != nil {
-		return x.NetTcpListener
-	}
-	return 0
-}
-
-func (x *AllResponse) GetNetConnectCount() int32 {
-	if x != nil {
-		return x.NetConnectCount
-	}
-	return 0
-}
-
-type SysLoadAverageResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	SysLoadAverage float32 `protobuf:"fixed32,1,opt,name=SysLoadAverage,proto3" json:"SysLoadAverage,omitempty"`
-}
-
-func (x *SysLoadAverageResponse) Reset() {
-	*x = SysLoadAverageResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *SysLoadAverageResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SysLoadAverageResponse) ProtoMessage() {}
-
-func (x *SysLoadAverageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SysLoadAverageResponse.ProtoReflect.Descriptor instead.
-func (*SysLoadAverageResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *SysLoadAverageResponse) GetSysLoadAverage() float32 {
-	if x != nil {
-		return x.SysLoadAverage
-	}
-	return 0
-}
-
-type CpuAverageResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	CpuAverage int32 `protobuf:"varint,1,opt,name=CpuAverage,proto3" json:"CpuAverage,omitempty"`
-}
-
-func (x *CpuAverageResponse) Reset() {
-	*x = CpuAverageResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CpuAverageResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CpuAverageResponse) ProtoMessage() {}
-
-func (x *CpuAverageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CpuAverageResponse.ProtoReflect.Descriptor instead.
-func (*CpuAverageResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *CpuAverageResponse) GetCpuAverage() int32 {
-	if x != nil {
-		return x.CpuAverage
-	}
-	return 0
-}
-
-type DiskTpsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	DiskTps int32 `protobuf:"varint,1,opt,name=DiskTps,proto3" json:"DiskTps,omitempty"`
-}
-
-func (x *DiskTpsResponse) Reset() {
-	*x = DiskTpsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DiskTpsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DiskTpsResponse) ProtoMessage() {}
-
-func (x *DiskTpsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DiskTpsResponse.ProtoReflect.Descriptor instead.
-func (*DiskTpsResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *DiskTpsResponse) GetDiskTps() int32 {
-	if x != nil {
-		return x.DiskTps
-	}
-	return 0
-}
-
-type DiskRwPsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	DiskRwPs int32 `protobuf:"varint,1,opt,name=DiskRwPs,proto3" json:"DiskRwPs,omitempty"`
-}
-
-func (x *DiskRwPsResponse) Reset() {
-	*x = DiskRwPsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *DiskRwPsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DiskRwPsResponse) ProtoMessage() {}
-
-func (x *DiskRwPsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DiskRwPsResponse.ProtoReflect.Descriptor instead.
-func (*DiskRwPsResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *DiskRwPsResponse) GetDiskRwPs() int32 {
-	if x != nil {
-		return x.DiskRwPs
-	}
-	return 0
-}
-
-type NetTTProtocolResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NetTTProtocol int32 `protobuf:"varint,1,opt,name=NetTTProtocol,proto3" json:"NetTTProtocol,omitempty"`
-}
-
-func (x *NetTTProtocolResponse) Reset() {
-	*x = NetTTProtocolResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *NetTTProtocolResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NetTTProtocolResponse) ProtoMessage() {}
-
-func (x *NetTTProtocolResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NetTTProtocolResponse.ProtoReflect.Descriptor instead.
-func (*NetTTProtocolResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *NetTTProtocolResponse) GetNetTTProtocol() int32 {
-	if x != nil {
-		return x.NetTTProtocol
-	}
-	return 0
-}
-
-type NetTTTrafficResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NetTTTraffic int32 `protobuf:"varint,1,opt,name=NetTTTraffic,proto3" json:"NetTTTraffic,omitempty"`
-}
-
-func (x *NetTTTrafficResponse) Reset() {
-	*x = NetTTTrafficResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *NetTTTrafficResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NetTTTrafficResponse) ProtoMessage() {}
-
-func (x *NetTTTrafficResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NetTTTrafficResponse.ProtoReflect.Descriptor instead.
-func (*NetTTTrafficResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *NetTTTrafficResponse) GetNetTTTraffic() int32 {
-	if x != nil {
-		return x.NetTTTraffic
-	}
-	return 0
-}
-
-type NetTcpListenerResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NetTcpListener int32 `protobuf:"varint,1,opt,name=NetTcpListener,proto3" json:"NetTcpListener,omitempty"`
-}
-
-func (x *NetTcpListenerResponse) Reset() {
-	*x = NetTcpListenerResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *NetTcpListenerResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NetTcpListenerResponse) ProtoMessage() {}
-
-func (x *NetTcpListenerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NetTcpListenerResponse.ProtoReflect.Descriptor instead.
-func (*NetTcpListenerResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *NetTcpListenerResponse) GetNetTcpListener() int32 {
-	if x != nil {
-		return x.NetTcpListener
-	}
-	return 0
-}
-
-type NetConnectCountResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	NetConnectCount int32 `protobuf:"varint,1,opt,name=NetConnectCount,proto3" json:"NetConnectCount,omitempty"`
-}
-
-func (x *NetConnectCountResponse) Reset() {
-	*x = NetConnectCountResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *NetConnectCountResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NetConnectCountResponse) ProtoMessage() {}
-
-func (x *NetConnectCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NetConnectCountResponse.ProtoReflect.Descriptor instead.
-func (*NetConnectCountResponse) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *NetConnectCountResponse) GetNetConnectCount() int32 {
-	if x != nil {
-		return x.NetConnectCount
-	}
-	return 0
+	return nil
 }
 
 type Request struct {
@@ -560,7 +617,7 @@ type Request struct {
 func (x *Request) Reset() {
 	*x = Request{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[10]
+		mi := &file_monitor_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -573,7 +630,7 @@ func (x *Request) String() string {
 func (*Request) ProtoMessage() {}
 
 func (x *Request) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[10]
+	mi := &file_monitor_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -586,7 +643,7 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Request.ProtoReflect.Descriptor instead.
 func (*Request) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{10}
+	return file_monitor_proto_rawDescGZIP(), []int{9}
 }
 
 type RequestConnect struct {
@@ -601,7 +658,7 @@ type RequestConnect struct {
 func (x *RequestConnect) Reset() {
 	*x = RequestConnect{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_monitor_proto_msgTypes[11]
+		mi := &file_monitor_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -614,7 +671,7 @@ func (x *RequestConnect) String() string {
 func (*RequestConnect) ProtoMessage() {}
 
 func (x *RequestConnect) ProtoReflect() protoreflect.Message {
-	mi := &file_monitor_proto_msgTypes[11]
+	mi := &file_monitor_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -627,7 +684,7 @@ func (x *RequestConnect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RequestConnect.ProtoReflect.Descriptor instead.
 func (*RequestConnect) Descriptor() ([]byte, []int) {
-	return file_monitor_proto_rawDescGZIP(), []int{11}
+	return file_monitor_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *RequestConnect) GetEachNSec() int32 {
@@ -648,69 +705,82 @@ var File_monitor_proto protoreflect.FileDescriptor
 
 var file_monitor_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x07, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x22, 0x2a, 0x0a, 0x0a, 0x4f, 0x6b, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63,
-	0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x65, 0x64, 0x22, 0xa7, 0x02, 0x0a, 0x0b, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x53, 0x79, 0x73, 0x4c, 0x6f, 0x61, 0x64, 0x41,
-	0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0e, 0x53, 0x79,
-	0x73, 0x4c, 0x6f, 0x61, 0x64, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x1e, 0x0a, 0x0a,
-	0x43, 0x70, 0x75, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x0a, 0x43, 0x70, 0x75, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x18, 0x0a, 0x07,
-	0x44, 0x69, 0x73, 0x6b, 0x54, 0x70, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x07, 0x44,
-	0x69, 0x73, 0x6b, 0x54, 0x70, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x44, 0x69, 0x73, 0x6b, 0x52, 0x77,
-	0x50, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x44, 0x69, 0x73, 0x6b, 0x52, 0x77,
-	0x50, 0x73, 0x12, 0x24, 0x0a, 0x0d, 0x4e, 0x65, 0x74, 0x54, 0x54, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x63, 0x6f, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x4e, 0x65, 0x74, 0x54, 0x54,
-	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x12, 0x22, 0x0a, 0x0c, 0x4e, 0x65, 0x74, 0x54,
-	0x54, 0x54, 0x72, 0x61, 0x66, 0x66, 0x69, 0x63, 0x18, 0x06, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0c,
-	0x4e, 0x65, 0x74, 0x54, 0x54, 0x54, 0x72, 0x61, 0x66, 0x66, 0x69, 0x63, 0x12, 0x26, 0x0a, 0x0e,
-	0x4e, 0x65, 0x74, 0x54, 0x63, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x65, 0x72, 0x18, 0x07,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x0e, 0x4e, 0x65, 0x74, 0x54, 0x63, 0x70, 0x4c, 0x69, 0x73, 0x74,
-	0x65, 0x6e, 0x65, 0x72, 0x12, 0x28, 0x0a, 0x0f, 0x4e, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x4e,
-	0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x40,
-	0x0a, 0x16, 0x53, 0x79, 0x73, 0x4c, 0x6f, 0x61, 0x64, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x53, 0x79, 0x73, 0x4c,
-	0x6f, 0x61, 0x64, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02,
-	0x52, 0x0e, 0x53, 0x79, 0x73, 0x4c, 0x6f, 0x61, 0x64, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65,
-	0x22, 0x34, 0x0a, 0x12, 0x43, 0x70, 0x75, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x43, 0x70, 0x75, 0x41, 0x76, 0x65,
-	0x72, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x43, 0x70, 0x75, 0x41,
-	0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x22, 0x2b, 0x0a, 0x0f, 0x44, 0x69, 0x73, 0x6b, 0x54, 0x70,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x44, 0x69, 0x73,
-	0x6b, 0x54, 0x70, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x07, 0x44, 0x69, 0x73, 0x6b,
-	0x54, 0x70, 0x73, 0x22, 0x2e, 0x0a, 0x10, 0x44, 0x69, 0x73, 0x6b, 0x52, 0x77, 0x50, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x44, 0x69, 0x73, 0x6b, 0x52,
-	0x77, 0x50, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x44, 0x69, 0x73, 0x6b, 0x52,
-	0x77, 0x50, 0x73, 0x22, 0x3d, 0x0a, 0x15, 0x4e, 0x65, 0x74, 0x54, 0x54, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x63, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x0d,
-	0x4e, 0x65, 0x74, 0x54, 0x54, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x05, 0x52, 0x0d, 0x4e, 0x65, 0x74, 0x54, 0x54, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x63,
-	0x6f, 0x6c, 0x22, 0x3a, 0x0a, 0x14, 0x4e, 0x65, 0x74, 0x54, 0x54, 0x54, 0x72, 0x61, 0x66, 0x66,
-	0x69, 0x63, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x4e, 0x65,
-	0x74, 0x54, 0x54, 0x54, 0x72, 0x61, 0x66, 0x66, 0x69, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x0c, 0x4e, 0x65, 0x74, 0x54, 0x54, 0x54, 0x72, 0x61, 0x66, 0x66, 0x69, 0x63, 0x22, 0x40,
-	0x0a, 0x16, 0x4e, 0x65, 0x74, 0x54, 0x63, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x65, 0x72,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x4e, 0x65, 0x74, 0x54,
-	0x63, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
-	0x52, 0x0e, 0x4e, 0x65, 0x74, 0x54, 0x63, 0x70, 0x4c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x65, 0x72,
-	0x22, 0x43, 0x0a, 0x17, 0x4e, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x6f,
-	0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x0f, 0x4e,
-	0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x4e, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x09, 0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x22, 0x4c, 0x0a, 0x0e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x45, 0x61, 0x63, 0x68, 0x4e, 0x53, 0x65, 0x63, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x45, 0x61, 0x63, 0x68, 0x4e, 0x53, 0x65, 0x63, 0x12, 0x1e,
-	0x0a, 0x0a, 0x46, 0x6f, 0x72, 0x54, 0x68, 0x65, 0x4d, 0x53, 0x65, 0x63, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x05, 0x52, 0x0a, 0x46, 0x6f, 0x72, 0x54, 0x68, 0x65, 0x4d, 0x53, 0x65, 0x63, 0x32, 0x45,
-	0x0a, 0x07, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x12, 0x3a, 0x0a, 0x07, 0x43, 0x6f, 0x6e,
-	0x6e, 0x65, 0x63, 0x74, 0x12, 0x17, 0x2e, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x1a, 0x14, 0x2e,
-	0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x30, 0x01, 0x42, 0x0e, 0x5a, 0x0c, 0x2e, 0x3b, 0x6d, 0x6f, 0x6e, 0x69, 0x74,
-	0x6f, 0x72, 0x5f, 0x76, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x07, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x22, 0x49, 0x0a, 0x07, 0x63, 0x70, 0x75, 0x49,
+	0x6e, 0x66, 0x6f, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x79, 0x73, 0x74, 0x65,
+	0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x73, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x12,
+	0x12, 0x0a, 0x04, 0x69, 0x64, 0x6c, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x69,
+	0x64, 0x6c, 0x65, 0x22, 0x6f, 0x0a, 0x07, 0x64, 0x69, 0x73, 0x6b, 0x54, 0x70, 0x73, 0x12, 0x1e,
+	0x0a, 0x0a, 0x44, 0x69, 0x73, 0x6b, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0a, 0x44, 0x69, 0x73, 0x6b, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x12, 0x10,
+	0x0a, 0x03, 0x54, 0x70, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x02, 0x52, 0x03, 0x54, 0x70, 0x73,
+	0x12, 0x18, 0x0a, 0x07, 0x4b, 0x42, 0x52, 0x65, 0x61, 0x64, 0x53, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x02, 0x52, 0x07, 0x4b, 0x42, 0x52, 0x65, 0x61, 0x64, 0x53, 0x12, 0x18, 0x0a, 0x07, 0x4b, 0x42,
+	0x57, 0x72, 0x74, 0x6e, 0x53, 0x18, 0x04, 0x20, 0x01, 0x28, 0x02, 0x52, 0x07, 0x4b, 0x42, 0x57,
+	0x72, 0x74, 0x6e, 0x53, 0x22, 0x60, 0x0a, 0x0a, 0x44, 0x69, 0x73, 0x6b, 0x55, 0x73, 0x65, 0x64,
+	0x46, 0x53, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x75, 0x73, 0x65, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61,
+	0x62, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x76, 0x61, 0x69, 0x6c,
+	0x61, 0x62, 0x6c, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x75, 0x73, 0x65, 0x64, 0x50, 0x65, 0x72, 0x63,
+	0x65, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x75, 0x73, 0x65, 0x64, 0x50,
+	0x65, 0x72, 0x63, 0x65, 0x6e, 0x74, 0x22, 0x53, 0x0a, 0x09, 0x44, 0x69, 0x73, 0x6b, 0x49, 0x6e,
+	0x66, 0x6f, 0x4e, 0x12, 0x12, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x75, 0x73, 0x65, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x66, 0x72, 0x65, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x66, 0x72, 0x65, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x75,
+	0x73, 0x65, 0x50, 0x65, 0x72, 0x63, 0x65, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x75, 0x73, 0x65, 0x50, 0x65, 0x72, 0x63, 0x65, 0x6e, 0x74, 0x22, 0x37, 0x0a, 0x09, 0x53,
+	0x74, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61, 0x74,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x12, 0x14,
+	0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x22, 0x91, 0x01, 0x0a, 0x07, 0x4e, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f,
+	0x12, 0x14, 0x0a, 0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x52, 0x65, 0x63, 0x76, 0x51, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x52, 0x65, 0x63, 0x76, 0x51, 0x12, 0x14, 0x0a, 0x05,
+	0x53, 0x65, 0x6e, 0x64, 0x51, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x53, 0x65, 0x6e,
+	0x64, 0x51, 0x12, 0x22, 0x0a, 0x0c, 0x4c, 0x6f, 0x63, 0x61, 0x6c, 0x41, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x4c, 0x6f, 0x63, 0x61, 0x6c, 0x41,
+	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x50, 0x65, 0x65, 0x72, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x50, 0x65, 0x65,
+	0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x6b, 0x0a, 0x07, 0x4e, 0x65, 0x74, 0x53,
+	0x74, 0x61, 0x74, 0x12, 0x2c, 0x0a, 0x08, 0x4e, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x18,
+	0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e,
+	0x4e, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x4e, 0x65, 0x74, 0x49, 0x6e, 0x66, 0x6f,
+	0x73, 0x12, 0x32, 0x0a, 0x0a, 0x53, 0x74, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e,
+	0x53, 0x74, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x0a, 0x53, 0x74, 0x61, 0x74, 0x65,
+	0x49, 0x6e, 0x66, 0x6f, 0x73, 0x22, 0x2a, 0x0a, 0x0a, 0x4f, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x65, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x65,
+	0x64, 0x22, 0x9a, 0x02, 0x0a, 0x0b, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x26, 0x0a, 0x0e, 0x53, 0x79, 0x73, 0x4c, 0x6f, 0x61, 0x64, 0x41, 0x76, 0x65, 0x72,
+	0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x02, 0x52, 0x0e, 0x53, 0x79, 0x73, 0x4c, 0x6f,
+	0x61, 0x64, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x30, 0x0a, 0x0a, 0x43, 0x70, 0x75,
+	0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e,
+	0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x63, 0x70, 0x75, 0x49, 0x6e, 0x66, 0x6f, 0x52,
+	0x0a, 0x43, 0x70, 0x75, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x12, 0x2a, 0x0a, 0x07, 0x44,
+	0x69, 0x73, 0x6b, 0x54, 0x70, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6d,
+	0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x64, 0x69, 0x73, 0x6b, 0x54, 0x70, 0x73, 0x52, 0x07,
+	0x44, 0x69, 0x73, 0x6b, 0x54, 0x70, 0x73, 0x12, 0x2f, 0x0a, 0x08, 0x44, 0x69, 0x73, 0x6b, 0x52,
+	0x77, 0x50, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x6d, 0x6f, 0x6e, 0x69,
+	0x74, 0x6f, 0x72, 0x2e, 0x44, 0x69, 0x73, 0x6b, 0x55, 0x73, 0x65, 0x64, 0x46, 0x53, 0x52, 0x08,
+	0x44, 0x69, 0x73, 0x6b, 0x52, 0x77, 0x50, 0x73, 0x12, 0x30, 0x0a, 0x09, 0x44, 0x69, 0x73, 0x6b,
+	0x49, 0x6e, 0x66, 0x6f, 0x4e, 0x18, 0x05, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x6d, 0x6f,
+	0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x44, 0x69, 0x73, 0x6b, 0x49, 0x6e, 0x66, 0x6f, 0x4e, 0x52,
+	0x09, 0x44, 0x69, 0x73, 0x6b, 0x49, 0x6e, 0x66, 0x6f, 0x4e, 0x12, 0x22, 0x0a, 0x03, 0x4e, 0x65,
+	0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f,
+	0x72, 0x2e, 0x4e, 0x65, 0x74, 0x53, 0x74, 0x61, 0x74, 0x52, 0x03, 0x4e, 0x65, 0x74, 0x22, 0x09,
+	0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4c, 0x0a, 0x0e, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x45,
+	0x61, 0x63, 0x68, 0x4e, 0x53, 0x65, 0x63, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x08, 0x45,
+	0x61, 0x63, 0x68, 0x4e, 0x53, 0x65, 0x63, 0x12, 0x1e, 0x0a, 0x0a, 0x46, 0x6f, 0x72, 0x54, 0x68,
+	0x65, 0x4d, 0x53, 0x65, 0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x46, 0x6f, 0x72,
+	0x54, 0x68, 0x65, 0x4d, 0x53, 0x65, 0x63, 0x32, 0x45, 0x0a, 0x07, 0x4d, 0x6f, 0x6e, 0x69, 0x74,
+	0x6f, 0x72, 0x12, 0x3a, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x12, 0x17, 0x2e,
+	0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x43,
+	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x1a, 0x14, 0x2e, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72,
+	0x2e, 0x41, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x42, 0x0e,
+	0x5a, 0x0c, 0x2e, 0x3b, 0x6d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x5f, 0x76, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -725,29 +795,35 @@ func file_monitor_proto_rawDescGZIP() []byte {
 	return file_monitor_proto_rawDescData
 }
 
-var file_monitor_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_monitor_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_monitor_proto_goTypes = []interface{}{
-	(*OkResponse)(nil),              // 0: monitor.OkResponse
-	(*AllResponse)(nil),             // 1: monitor.AllResponse
-	(*SysLoadAverageResponse)(nil),  // 2: monitor.SysLoadAverageResponse
-	(*CpuAverageResponse)(nil),      // 3: monitor.CpuAverageResponse
-	(*DiskTpsResponse)(nil),         // 4: monitor.DiskTpsResponse
-	(*DiskRwPsResponse)(nil),        // 5: monitor.DiskRwPsResponse
-	(*NetTTProtocolResponse)(nil),   // 6: monitor.NetTTProtocolResponse
-	(*NetTTTrafficResponse)(nil),    // 7: monitor.NetTTTrafficResponse
-	(*NetTcpListenerResponse)(nil),  // 8: monitor.NetTcpListenerResponse
-	(*NetConnectCountResponse)(nil), // 9: monitor.NetConnectCountResponse
-	(*Request)(nil),                 // 10: monitor.Request
-	(*RequestConnect)(nil),          // 11: monitor.RequestConnect
+	(*CpuInfo)(nil),        // 0: monitor.cpuInfo
+	(*DiskTps)(nil),        // 1: monitor.diskTps
+	(*DiskUsedFS)(nil),     // 2: monitor.DiskUsedFS
+	(*DiskInfoN)(nil),      // 3: monitor.DiskInfoN
+	(*StateInfo)(nil),      // 4: monitor.StateInfo
+	(*NetInfo)(nil),        // 5: monitor.NetInfo
+	(*NetStat)(nil),        // 6: monitor.NetStat
+	(*OkResponse)(nil),     // 7: monitor.OkResponse
+	(*AllResponse)(nil),    // 8: monitor.AllResponse
+	(*Request)(nil),        // 9: monitor.Request
+	(*RequestConnect)(nil), // 10: monitor.RequestConnect
 }
 var file_monitor_proto_depIdxs = []int32{
-	11, // 0: monitor.Monitor.Connect:input_type -> monitor.RequestConnect
-	1,  // 1: monitor.Monitor.Connect:output_type -> monitor.AllResponse
-	1,  // [1:2] is the sub-list for method output_type
-	0,  // [0:1] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	5,  // 0: monitor.NetStat.NetInfos:type_name -> monitor.NetInfo
+	4,  // 1: monitor.NetStat.StateInfos:type_name -> monitor.StateInfo
+	0,  // 2: monitor.AllResponse.CpuAverage:type_name -> monitor.cpuInfo
+	1,  // 3: monitor.AllResponse.DiskTps:type_name -> monitor.diskTps
+	2,  // 4: monitor.AllResponse.DiskRwPs:type_name -> monitor.DiskUsedFS
+	3,  // 5: monitor.AllResponse.DiskInfoN:type_name -> monitor.DiskInfoN
+	6,  // 6: monitor.AllResponse.Net:type_name -> monitor.NetStat
+	10, // 7: monitor.Monitor.Connect:input_type -> monitor.RequestConnect
+	8,  // 8: monitor.Monitor.Connect:output_type -> monitor.AllResponse
+	8,  // [8:9] is the sub-list for method output_type
+	7,  // [7:8] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_monitor_proto_init() }
@@ -757,7 +833,7 @@ func file_monitor_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_monitor_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OkResponse); i {
+			switch v := v.(*CpuInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -769,7 +845,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AllResponse); i {
+			switch v := v.(*DiskTps); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -781,7 +857,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SysLoadAverageResponse); i {
+			switch v := v.(*DiskUsedFS); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -793,7 +869,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CpuAverageResponse); i {
+			switch v := v.(*DiskInfoN); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -805,7 +881,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DiskTpsResponse); i {
+			switch v := v.(*StateInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -817,7 +893,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DiskRwPsResponse); i {
+			switch v := v.(*NetInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -829,7 +905,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NetTTProtocolResponse); i {
+			switch v := v.(*NetStat); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -841,7 +917,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NetTTTrafficResponse); i {
+			switch v := v.(*OkResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -853,7 +929,7 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NetTcpListenerResponse); i {
+			switch v := v.(*AllResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -865,18 +941,6 @@ func file_monitor_proto_init() {
 			}
 		}
 		file_monitor_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*NetConnectCountResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_monitor_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Request); i {
 			case 0:
 				return &v.state
@@ -888,7 +952,7 @@ func file_monitor_proto_init() {
 				return nil
 			}
 		}
-		file_monitor_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_monitor_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RequestConnect); i {
 			case 0:
 				return &v.state
@@ -907,7 +971,7 @@ func file_monitor_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_monitor_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -23,12 +23,11 @@ type GRPCConfig struct {
 func Load() *Config {
 	configPath := fetchConfigPath()
 	if configPath == "" {
-		configPath = "./server/config/config_local.yaml"
+		configPath = "./config/config_local.yaml"
 	}
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		log.Logger.Log.Error("config file does not exists: %s", configPath)
-		log.Logger.Log.Fatal(err)
+		log2.Fatal(err)
 	}
 
 	var cfg Config

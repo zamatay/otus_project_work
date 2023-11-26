@@ -7,16 +7,51 @@ package monitor;
 option go_package = ".;monitor_v1";
 
 service Monitor {
-//  rpc GetAll (Request) returns (AllResponse);
-//  rpc GetSysLoadAverage (Request) returns (SysLoadAverageResponse);
-//  rpc GetCpuAverageResponse (Request) returns (CpuAverageResponse);
-//  rpc GetDiskTpsResponse (Request) returns (DiskTpsResponse);
-//  rpc GetDiskRwPsResponse (Request) returns (DiskRwPsResponse);
-//  rpc GetNetTTProtocolResponse (Request) returns (NetTTProtocolResponse);
-//  rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
-//  rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
-//  rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
   rpc Connect (RequestConnect) returns (stream AllResponse);
+}
+
+message cpuInfo{
+  int32 user = 1;
+  int32 system = 2;
+  int32 idle = 3;
+}
+
+message diskTps{
+  string DiskDevice = 1;
+  float Tps = 2;
+  float KBReadS = 3;
+  float KBWrtnS = 4;
+}
+
+message DiskUsedFS{
+  string used = 1;
+  string available = 2;
+  string usedPercent = 3;
+}
+
+message DiskInfoN{
+  string uses = 1;
+  string free = 2;
+  string usePercent = 3;
+}
+
+message StateInfo{
+  string state = 1;
+  int32 count = 2;
+}
+
+message NetInfo{
+  string State = 1;
+  int32 RecvQ = 2;
+  int32 SendQ = 3;
+  string LocalAddress = 4;
+  string PeerAddress = 5;
+
+}
+
+message NetStat{
+  repeated NetInfo NetInfos = 1;
+  repeated StateInfo StateInfos = 2;
 }
 
 message OkResponse {
@@ -25,45 +60,11 @@ message OkResponse {
 
 message AllResponse{
   float SysLoadAverage = 1;
-  int32 CpuAverage = 2;
-  int32 DiskTps = 3;
-  int32 DiskRwPs = 4;
-  int32 NetTTProtocol = 5;
-  int32 NetTTTraffic = 6;
-  int32 NetTcpListener = 7;
-  int32 NetConnectCount = 8;
-}
-
-message SysLoadAverageResponse{
-  float SysLoadAverage = 1;
-}
-
-message CpuAverageResponse{
-  int32 CpuAverage = 1;
-}
-
-message DiskTpsResponse{
-  int32 DiskTps = 1;
-}
-
-message DiskRwPsResponse{
-  int32 DiskRwPs = 1;
-}
-
-message NetTTProtocolResponse{
-  int32 NetTTProtocol = 1;
-}
-
-message NetTTTrafficResponse{
-  int32 NetTTTraffic = 1;
-}
-
-message NetTcpListenerResponse{
-  int32 NetTcpListener = 1;
-}
-
-message NetConnectCountResponse{
-  int32 NetConnectCount = 1;
+  cpuInfo CpuAverage = 2;
+  repeated diskTps DiskTps = 3;
+  repeated DiskUsedFS DiskRwPs = 4;
+  repeated DiskInfoN DiskInfoN = 5;
+  NetStat Net = 6;
 }
 
 message Request{}

@@ -39,28 +39,28 @@ func snapshotSysInfo() (*models.SysMonitor, error) {
 	if memory, err := sysInfo.GetMemory(); err == nil {
 		result.Memory = *memory
 	} else {
-		errors.Join(errorrProcess, err)
+		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
 	//средняя загрузка
 	if loadAVG, err := sysInfo.GetLoadAVG(); err == nil {
 		result.AvgSysLoad = *loadAVG
 	} else {
-		errors.Join(errorrProcess, err)
+		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
 	//процессор
 	if processorStat, err := sysInfo.GetProcessorStat(); err == nil {
 		result.AvgCpuLoad = *processorStat
 	} else {
-		errors.Join(errorrProcess, err)
+		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
 	//диск 1
 	if d, err := sysInfo.GetDiskInfoDev(); err == nil {
 		result.DiskUsedFS = *d
 	} else {
-		errors.Join(errorrProcess, err)
+		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
 	//диск 2
@@ -74,21 +74,21 @@ func snapshotSysInfo() (*models.SysMonitor, error) {
 	if d, err := sysInfo.GetDiskInfo3(); err == nil {
 		result.DiskUsedN = *d
 	} else {
-		errors.Join(errorrProcess, err)
+		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
 	//Общая информация о компе
 	if ioStat, err := sysInfo.GetIOStat(); err == nil {
 		result.StatInfo = *ioStat
 	} else {
-		errors.Join(errorrProcess, err)
+		errorrProcess = errors.Join(errorrProcess, err)
 	}
 
 	result.DiskInfo = result.StatInfo.Sysstat.Hosts[0].Statistics[0].Disk
 	result.AvgCpu = result.StatInfo.Sysstat.Hosts[0].Statistics[0].AvgCPU
 
-	if info, err := sysInfo.GetNetInfo(); err == nil {
-		errors.Join(errorrProcess, err)
+	if info, err := sysInfo.GetNetInfo(); err != nil {
+		errorrProcess = errors.Join(errorrProcess, err)
 	} else {
 		result.NetInfo = *info
 	}

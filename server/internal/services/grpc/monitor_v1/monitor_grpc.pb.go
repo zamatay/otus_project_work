@@ -18,15 +18,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MonitorClient interface {
-	//  rpc GetAll (Request) returns (AllResponse);
-	//  rpc GetSysLoadAverage (Request) returns (SysLoadAverageResponse);
-	//  rpc GetCpuAverageResponse (Request) returns (CpuAverageResponse);
-	//  rpc GetDiskTpsResponse (Request) returns (DiskTpsResponse);
-	//  rpc GetDiskRwPsResponse (Request) returns (DiskRwPsResponse);
-	//  rpc GetNetTTProtocolResponse (Request) returns (NetTTProtocolResponse);
-	//  rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
-	//  rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
-	//  rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
 	Connect(ctx context.Context, in *RequestConnect, opts ...grpc.CallOption) (Monitor_ConnectClient, error)
 }
 
@@ -74,15 +65,6 @@ func (x *monitorConnectClient) Recv() (*AllResponse, error) {
 // All implementations must embed UnimplementedMonitorServer
 // for forward compatibility
 type MonitorServer interface {
-	//  rpc GetAll (Request) returns (AllResponse);
-	//  rpc GetSysLoadAverage (Request) returns (SysLoadAverageResponse);
-	//  rpc GetCpuAverageResponse (Request) returns (CpuAverageResponse);
-	//  rpc GetDiskTpsResponse (Request) returns (DiskTpsResponse);
-	//  rpc GetDiskRwPsResponse (Request) returns (DiskRwPsResponse);
-	//  rpc GetNetTTProtocolResponse (Request) returns (NetTTProtocolResponse);
-	//  rpc GeNetTTTrafficResponse (Request) returns (NetTTTrafficResponse);
-	//  rpc GeNetTcpListenerResponse (Request) returns (NetTcpListenerResponse);
-	//  rpc GeNetConnectCountResponse (Request) returns (NetConnectCountResponse);
 	Connect(*RequestConnect, Monitor_ConnectServer) error
 	mustEmbedUnimplementedMonitorServer()
 }

@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"log"
 	"project_work/internal/domain/models"
 	"strconv"
 	"strings"
@@ -105,9 +104,8 @@ func collectDisk2(ior io.Reader) (*map[string]models.DiskInfoFS, error) {
 			continue
 		}
 		di := models.DiskInfoFS{}
-		if in, err := fmt.Sscanf(string(line), "%s %d %d %d %s",
+		if _, err := fmt.Sscanf(string(line), "%s %s %s %s %s",
 			&di.Fs, &di.Kblock, &di.Used, &di.Available, &di.UsedPercent); err == nil {
-			log.Println(in)
 			result[di.Fs] = di
 		}
 	}

@@ -5,5 +5,5 @@ type NetInfo struct {
 	RecvQ        int
 	SendQ        int
 	LocalAddress string
-	PeerAddress  interface{}
+	PeerAddress  string
 }

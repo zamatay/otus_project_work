@@ -20,7 +20,7 @@ func Serve(cfg config.GRPCConfig, info *sysInfo.SysInfoSrv) {
 		log.Fatalf("failed to serve: %v", err)
 	}
 
-	pb.RegisterMonitorServer(grpcServer, pb.NewServerApi(info))
+	pb.RegisterMonitorServer(grpcServer, NewServerApi(info))
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

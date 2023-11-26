@@ -34,7 +34,7 @@ type SysMonitor struct {
 	DiskUsedFS map[string]DiskInfoFS //used, available, usedPercent
 	DiskUsedN  map[string]DiskInfoN  //uses, free, usePercent
 	// Загрузка дисков
-	DiskInfo []DiskInfoAny
+	DiskInfo []DiskInfoAny //	Tps, KBReadS, KBWrtnS
 	AvgCpu   AvgCPU
 	// Статистика по сетевым соединениям
 	NetInfo  []NetInfo

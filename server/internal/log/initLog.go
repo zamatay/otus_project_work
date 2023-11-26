@@ -1,6 +1,7 @@
 package log
 
 import (
+	log2 "log"
 	"log/slog"
 	"os"
 )
@@ -34,4 +35,8 @@ func SetupLogger(env string) {
 			slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}),
 		)
 	}
+}
+
+func (l *Log) Fatal(err error) {
+	log2.Fatal(err)
 }
