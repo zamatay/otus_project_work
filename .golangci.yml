@@ -66,4 +66,3 @@ linters:
     - typecheck
     - unparam
     - unused
-    - whitespace
