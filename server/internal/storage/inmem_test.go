@@ -65,3 +65,98 @@ func Test_getNet(t *testing.T) {
 		})
 	}
 }
+
+func Test_getDiskRwPs(t *testing.T) {
+	type args struct {
+		values models.SysMonitor
+	}
+	tests := []struct {
+		name string
+		args args
+		want []*monitor_v1.DiskUsedFS
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := getDiskRwPs(tt.args.values); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getDiskRwPs() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_getDiskTps(t *testing.T) {
+	type args struct {
+		tps   []*monitor_v1.DiskTps
+		value models.SysMonitor
+	}
+	tests := []struct {
+		name string
+		args args
+		want []*monitor_v1.DiskTps
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := getDiskTps(tt.args.tps, tt.args.value); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getDiskTps() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_getDiskTpsAvg(t *testing.T) {
+	type Args struct {
+		tps   []*monitor_v1.DiskTps
+		count float32
+	}
+	tests := []struct {
+		name       string
+		args       Args
+		wantResult []*monitor_v1.DiskTps
+	}{
+		{name: "Test_getDiskTpsAvg", args: Args{
+			tps: []*monitor_v1.DiskTps{
+				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 1.0, KBReadS: 2.0, KBWrtnS: 4.0},
+				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 3.0, KBReadS: 4.0, KBWrtnS: 6.0},
+			}},
+			wantResult: []*monitor_v1.DiskTps{&monitor_v1.DiskTps{DiskDevice: "One", Tps: 2.0, KBReadS: 3.0, KBWrtnS: 5.0}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if gotResult := getDiskTpsAvg(tt.args.tps, tt.args.count); !reflect.DeepEqual(gotResult, tt.wantResult) {
+				t.Errorf("getDiskTpsAvg() = %v, want %v", gotResult, tt.wantResult)
+			}
+		})
+	}
+}
+
+func Test_getDiscTpsStruct(t *testing.T) {
+	type Args struct {
+		DiskDevice string
+		Tps        float32
+		KBRead     float32
+		KBWrtn     float32
+	}
+	tests := []struct {
+		name string
+		args Args
+		want monitor_v1.DiskTps
+	}{
+		{
+			name: "Test_getDiscTpsStruct",
+			args: Args{DiskDevice: "Test", Tps: 1.0, KBRead: 10.0, KBWrtn: 11.0},
+			want: monitor_v1.DiskTps{DiskDevice: "Test", Tps: 1.0, KBReadS: 10.0, KBWrtnS: 11.0},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := getDiscTpsStruct(tt.args.DiskDevice, tt.args.Tps, tt.args.KBRead, tt.args.KBWrtn); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getDiscTpsStruct() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
