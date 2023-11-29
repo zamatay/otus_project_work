@@ -119,10 +119,13 @@ func Test_getDiskTpsAvg(t *testing.T) {
 	}{
 		{name: "Test_getDiskTpsAvg", args: Args{
 			tps: []*monitor_v1.DiskTps{
-				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 1.0, KBReadS: 2.0, KBWrtnS: 4.0},
-				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 3.0, KBReadS: 4.0, KBWrtnS: 6.0},
-			}},
-			wantResult: []*monitor_v1.DiskTps{&monitor_v1.DiskTps{DiskDevice: "One", Tps: 2.0, KBReadS: 3.0, KBWrtnS: 5.0}},
+				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 4.0, KBReadS: 6.0, KBWrtnS: 10.0},
+				&monitor_v1.DiskTps{DiskDevice: "Two", Tps: 2.0, KBReadS: 4.0, KBWrtnS: 6.0},
+			}, count: 2},
+			wantResult: []*monitor_v1.DiskTps{
+				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 2.0, KBReadS: 3.0, KBWrtnS: 5.0},
+				&monitor_v1.DiskTps{DiskDevice: "Two", Tps: 1.0, KBReadS: 2.0, KBWrtnS: 3.0},
+			},
 		},
 	}
 	for _, tt := range tests {
