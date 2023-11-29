@@ -19,9 +19,9 @@ func GetDiskInfoDev() (*map[string]models.DiskInfoFS, error) {
 	return collectDisk2(bytes.NewBuffer(output))
 }
 
-func GetDiskInfo() (*map[string]models.DiskInfo, error) {
-	return GetByPath[map[string]models.DiskInfo]("/proc/diskstats", collectDisk)
-}
+//func GetDiskInfo() (*map[string]models.DiskInfo, error) {
+//	return GetByPath[map[string]models.DiskInfo]("/proc/diskstats", collectDisk)
+//}
 
 func GetDiskInfoSecondary() (*map[string]models.DiskInfoN, error) {
 	output := ExecuteCommand("df", "-i")
@@ -124,7 +124,7 @@ func collectDisk3(buffer *bytes.Buffer) (*map[string]models.DiskInfoN, error) {
 		line := scanner.Text()
 		di := models.DiskInfoN{}
 		if _, err := fmt.Sscanf(line, "%s %d %d %d %s %s",
-			&di.Fs, &di.Node, &di.Uses, &di.Free, &di.UsePercent, &di.UsePercent); err == nil {
+			&di.Fs, &di.Node, &di.Uses, &di.Free, &di.UsePercent, &di.Mount); err == nil {
 			result[di.Fs] = di
 		}
 		scanner.Text()

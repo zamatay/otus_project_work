@@ -49,14 +49,52 @@ func Test_getDiskNode(t *testing.T) {
 }
 
 func Test_getNet(t *testing.T) {
-	type args struct {
+	type Args struct {
 		net []models.NetInfo
 	}
 	tests := []struct {
 		name string
-		args args
+		args Args
 		want *monitor_v1.NetStat
-	}{}
+	}{
+		{
+			name: "Test_getNet",
+			args: Args{net: []models.NetInfo{
+				{State: "LISTEN",
+					RecvQ:        10,
+					SendQ:        20,
+					LocalAddress: "0.0.0.0:ms-sql-s",
+					PeerAddress:  "0.0.0.0:*",
+				},
+				{State: "LISTEN",
+					RecvQ:        20,
+					SendQ:        40,
+					LocalAddress: "0.0.0.0:postgresql",
+					PeerAddress:  "0.0.0.0:*",
+				},
+			},
+			},
+			want: &monitor_v1.NetStat{
+				NetInfos: []*monitor_v1.NetInfo{
+					{State: "LISTEN",
+						RecvQ:        10,
+						SendQ:        20,
+						LocalAddress: "0.0.0.0:ms-sql-s",
+						PeerAddress:  "0.0.0.0:*",
+					},
+					{State: "LISTEN",
+						RecvQ:        20,
+						SendQ:        40,
+						LocalAddress: "0.0.0.0:postgresql",
+						PeerAddress:  "0.0.0.0:*",
+					},
+				},
+				StateInfos: []*monitor_v1.StateInfo{
+					{State: "LISTEN", Count: 2},
+				},
+			},
+		},
+	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := getNet(tt.args.net); !reflect.DeepEqual(got, tt.want) {
@@ -67,15 +105,23 @@ func Test_getNet(t *testing.T) {
 }
 
 func Test_getDiskRwPs(t *testing.T) {
-	type args struct {
+	type Args struct {
 		values models.SysMonitor
 	}
 	tests := []struct {
 		name string
-		args args
+		args Args
 		want []*monitor_v1.DiskUsedFS
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test_getDiskRwPs",
+			args: Args{models.SysMonitor{DiskUsedFS: map[string]models.DiskInfoFS{
+				"one": {Used: "158", Available: "175406", UsedPercent: "1%"},
+			}}},
+			want: []*monitor_v1.DiskUsedFS{
+				{Used: "158", Available: "175406", UsedPercent: "1%"},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -87,16 +133,28 @@ func Test_getDiskRwPs(t *testing.T) {
 }
 
 func Test_getDiskTps(t *testing.T) {
-	type args struct {
+	type Args struct {
 		tps   []*monitor_v1.DiskTps
 		value models.SysMonitor
 	}
 	tests := []struct {
 		name string
-		args args
+		args Args
 		want []*monitor_v1.DiskTps
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test_getDiskTps",
+			args: Args{
+				tps: []*monitor_v1.DiskTps{
+					{DiskDevice: "loop0", Tps: 0.01, KBReadS: 1165, KBWrtnS: 1165},
+					{DiskDevice: "loop1", Tps: 0.22, KBReadS: 26322, KBWrtnS: 1165},
+				},
+			},
+			want: []*monitor_v1.DiskTps{
+				{DiskDevice: "loop0", Tps: 0.01, KBReadS: 1165, KBWrtnS: 1165},
+				{DiskDevice: "loop1", Tps: 0.22, KBReadS: 26322, KBWrtnS: 1165},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -119,12 +177,12 @@ func Test_getDiskTpsAvg(t *testing.T) {
 	}{
 		{name: "Test_getDiskTpsAvg", args: Args{
 			tps: []*monitor_v1.DiskTps{
-				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 4.0, KBReadS: 6.0, KBWrtnS: 10.0},
-				&monitor_v1.DiskTps{DiskDevice: "Two", Tps: 2.0, KBReadS: 4.0, KBWrtnS: 6.0},
+				{DiskDevice: "One", Tps: 4.0, KBReadS: 6.0, KBWrtnS: 10.0},
+				{DiskDevice: "Two", Tps: 2.0, KBReadS: 4.0, KBWrtnS: 6.0},
 			}, count: 2},
 			wantResult: []*monitor_v1.DiskTps{
-				&monitor_v1.DiskTps{DiskDevice: "One", Tps: 2.0, KBReadS: 3.0, KBWrtnS: 5.0},
-				&monitor_v1.DiskTps{DiskDevice: "Two", Tps: 1.0, KBReadS: 2.0, KBWrtnS: 3.0},
+				{DiskDevice: "One", Tps: 2.0, KBReadS: 3.0, KBWrtnS: 5.0},
+				{DiskDevice: "Two", Tps: 1.0, KBReadS: 2.0, KBWrtnS: 3.0},
 			},
 		},
 	}
