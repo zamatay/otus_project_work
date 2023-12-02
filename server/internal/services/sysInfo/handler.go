@@ -3,6 +3,7 @@ package sysInfo
 import (
 	"context"
 	"errors"
+	"os/exec"
 	sysInfo "project_work/internal/collector/linux"
 	"project_work/internal/domain/models"
 	"project_work/internal/log"
@@ -83,6 +84,10 @@ func snapshotSysInfo() (*models.SysMonitor, error) {
 		errorrProcess = errors.Join(errorrProcess, err)
 	} else {
 		result.NetInfo = *info
+	}
+
+	if errors.Is(errorrProcess, exec.ErrNotFound) {
+		log.Logger.Fatal(errorrProcess)
 	}
 
 	return &result, errorrProcess
