@@ -10,9 +10,19 @@ import (
 )
 
 type Config struct {
-	DevEnv   string        `yaml:"env" env-default:"local"`
-	Grpc     GRPCConfig    `yaml:"grpc"`
-	TokenTTL time.Duration `yaml:"token_ttl"`
+	DevEnv   string         `yaml:"env" env-default:"local"`
+	Grpc     GRPCConfig     `yaml:"grpc"`
+	TokenTTL time.Duration  `yaml:"token_ttl"`
+	Monitor  MonitorEnabled `yaml:"monitor"`
+}
+
+type MonitorEnabled struct {
+	Memory      bool `yaml:"memory"`
+	LoadAvg     bool `yaml:"loadAvg"`
+	ProcessStat bool `yaml:"processStat"`
+	Disk        bool `yaml:"disk"`
+	Iostat      bool `yaml:"iostat"`
+	Net         bool `yaml:"net"`
 }
 
 type GRPCConfig struct {

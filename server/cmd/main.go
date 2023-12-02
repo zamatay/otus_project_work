@@ -25,7 +25,7 @@ func main() {
 
 	go grpc.Serve(cfg.Grpc, srvInfo)
 
-	if err := app.ServiceRun(ctx, cancelFn); err != nil {
+	if err := app.ServiceRun(ctx, cancelFn, cfg); err != nil {
 		log.Logger.Log.Error("Ошибка при старте сервиса", "Error", err)
 		return
 	}

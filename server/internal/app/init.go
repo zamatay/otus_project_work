@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"project_work/internal/config"
 	"project_work/internal/services/sysInfo"
 )
 
@@ -14,7 +15,7 @@ func InitService() *sysInfo.SysInfoSrv {
 	return serviceSysInfo
 }
 
-func ServiceRun(ctx context.Context, cancelFunc context.CancelFunc) error {
-	go serviceSysInfo.Serve(ctx)
+func ServiceRun(ctx context.Context, cancelFunc context.CancelFunc, cfg *config.Config) error {
+	go serviceSysInfo.Serve(ctx, cfg)
 	return nil
 }
