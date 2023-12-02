@@ -6,7 +6,10 @@ import (
 )
 
 func GetIOStat() (*models.IOStat, error) {
-	data := ExecuteCommand("iostat", "-o", "JSON")
+	data, err := ExecuteCommand("iostat", "-o", "JSON")
+	if err != nil {
+		return nil, err
+	}
 	value := models.IOStat{}
 	if err := json.Unmarshal(data, &value); err != nil {
 		return nil, err

@@ -72,13 +72,12 @@ func snapshotSysInfo() (*models.SysMonitor, error) {
 
 	//Общая информация о компе
 	if ioStat, err := sysInfo.GetIOStat(); err == nil {
-		result.StatInfo = *ioStat
+		result.StatInfo = ioStat
+		result.DiskInfo = result.StatInfo.Sysstat.Hosts[0].Statistics[0].Disk
+		result.AvgCpu = result.StatInfo.Sysstat.Hosts[0].Statistics[0].AvgCPU
 	} else {
 		errorrProcess = errors.Join(errorrProcess, err)
 	}
-
-	result.DiskInfo = result.StatInfo.Sysstat.Hosts[0].Statistics[0].Disk
-	result.AvgCpu = result.StatInfo.Sysstat.Hosts[0].Statistics[0].AvgCPU
 
 	if info, err := sysInfo.GetNetInfo(); err != nil {
 		errorrProcess = errors.Join(errorrProcess, err)

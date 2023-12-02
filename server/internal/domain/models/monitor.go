@@ -38,5 +38,5 @@ type SysMonitor struct {
 	AvgCpu   AvgCPU
 	// Статистика по сетевым соединениям
 	NetInfo  []NetInfo
-	StatInfo IOStat
+	StatInfo *IOStat
 }

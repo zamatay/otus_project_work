@@ -5,12 +5,17 @@ import (
 	"bytes"
 	"io"
 	"project_work/internal/domain/models"
+	"project_work/internal/log"
 	"strconv"
 	"strings"
 )
 
 func GetNetInfo() (*[]models.NetInfo, error) {
-	output := ExecuteCommand("ss", "-ta")
+	output, err := ExecuteCommand("ss", "-ta")
+	if err != nil {
+		log.Logger.Log.Error("Ошибка при получении информации о сети. Необходимо установить утилиту ss", err)
+		return nil, err
+	}
 	return collectNetInfo(bytes.NewBuffer(output))
 }
 

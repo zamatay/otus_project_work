@@ -2,11 +2,12 @@ package sysInfo
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"os/exec"
+	"project_work/internal/log"
 	"sync"
 )
 
@@ -20,13 +21,18 @@ func GetByPath[T any](path string, f func(file io.Reader) (*T, error)) (*T, erro
 	return f(file)
 }
 
-func ExecuteCommand(command string, args ...string) []byte {
+func ExecuteCommand(command string, args ...string) ([]byte, error) {
 	cmd := exec.Command(command, args...)
 	stdOut, err := cmd.Output()
 	if err != nil {
-		log.Println(err)
+		if errors.Is(err, exec.ErrNotFound) {
+			log.Logger.Log.Error(fmt.Sprintf("Ошибка при получении статистики. Необходимо установить утилиту %s", command))
+		} else {
+			log.Logger.Log.Error(fmt.Sprintf("Ошибка при выполнении %s ", command), err)
+		}
+		return nil, err
 	}
-	return stdOut
+	return stdOut, nil
 }
 
 func AsyncExecuteCommand(command string, args ...string) {
@@ -35,7 +41,7 @@ func AsyncExecuteCommand(command string, args ...string) {
 	cmd := exec.Command(command, args...)
 	cmdReader, err := cmd.StdoutPipe()
 	if err != nil {
-		log.Fatal(err)
+		log.Logger.Fatal(err)
 	}
 	scanner := bufio.NewScanner(cmdReader)
 	go func() {

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"project_work/internal/domain/models"
+	"project_work/internal/log"
 	"strconv"
 	"strings"
 )
@@ -15,8 +16,12 @@ const (
 )
 
 func GetDiskInfoDev() (*map[string]models.DiskInfoFS, error) {
-	output := ExecuteCommand("df", "-H")
-	return collectDisk2(bytes.NewBuffer(output))
+	output, err := ExecuteCommand("df", "-H")
+	if err != nil {
+		log.Logger.Log.Error("Ошибка при получении информации о дисках. Необходимо установить утилиту df", err)
+		return nil, err
+	}
+	return collectDisk2(bytes.NewBuffer(output)), nil
 }
 
 //func GetDiskInfo() (*map[string]models.DiskInfo, error) {
@@ -24,7 +29,11 @@ func GetDiskInfoDev() (*map[string]models.DiskInfoFS, error) {
 //}
 
 func GetDiskInfoSecondary() (*map[string]models.DiskInfoN, error) {
-	output := ExecuteCommand("df", "-i")
+	output, err := ExecuteCommand("df", "-i")
+	if err != nil {
+		log.Logger.Log.Error("Ошибка при получении вторичной информации о дисках. Необходимо установить утилуту df", err)
+		return nil, err
+	}
 	return collectDisk3(bytes.NewBuffer(output))
 }
 
@@ -90,7 +99,7 @@ func collectDisk(file io.Reader) (*map[string]models.DiskInfo, error) {
 	return &result, nil
 }
 
-func collectDisk2(ior io.Reader) (*map[string]models.DiskInfoFS, error) {
+func collectDisk2(ior io.Reader) *map[string]models.DiskInfoFS {
 	result := make(map[string]models.DiskInfoFS, 0)
 	scanner := bufio.NewScanner(ior)
 	isFirst := true
@@ -109,7 +118,7 @@ func collectDisk2(ior io.Reader) (*map[string]models.DiskInfoFS, error) {
 			result[di.Fs] = di
 		}
 	}
-	return &result, nil
+	return &result
 }
 
 func collectDisk3(buffer *bytes.Buffer) (*map[string]models.DiskInfoN, error) {
