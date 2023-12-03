@@ -1,0 +1,12 @@
+env:
+  "local"
+grpc:
+  port: 44044
+  timeout: 10h
+monitor:
+  memory: true
+  loadAvg: true
+  processStat: true
+  disk: true
+  iostat: false
+  net: true

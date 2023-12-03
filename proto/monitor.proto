@@ -2,20 +2,74 @@
 // Версия ProtoBuf
 syntax = "proto3";
 // Текущий пакет - указывает пространство имен для сервиса и сообщений. Помогает избегать конфликтов имен.
-package auth;
+package monitor;
 
+option go_package = ".;monitor_v1";
 
 service Monitor {
-  rpc GetAll () returns (AllResponse);
+  rpc Connect (RequestConnect) returns (stream AllResponse);
+}
+
+message cpuInfo{
+  int32 user = 1;
+  int32 system = 2;
+  int32 idle = 3;
+}
+
+message diskTps{
+  string DiskDevice = 1;
+  float Tps = 2;
+  float KBReadS = 3;
+  float KBWrtnS = 4;
+}
+
+message DiskUsedFS{
+  string used = 1;
+  string available = 2;
+  string usedPercent = 3;
+}
+
+message DiskInfoN{
+  string uses = 1;
+  string free = 2;
+  string usePercent = 3;
+}
+
+message StateInfo{
+  string state = 1;
+  int32 count = 2;
+}
+
+message NetInfo{
+  string State = 1;
+  int32 RecvQ = 2;
+  int32 SendQ = 3;
+  string LocalAddress = 4;
+  string PeerAddress = 5;
+
+}
+
+message NetStat{
+  repeated NetInfo NetInfos = 1;
+  repeated StateInfo StateInfos = 2;
+}
+
+message OkResponse {
+  bool Connected = 1;
 }
 
 message AllResponse{
   float SysLoadAverage = 1;
-  int32 CpuAverage = 2;
-  int32 DiskTps = 3;
-  int32 DiskRwPs = 4;
-  int32 NetTTProtocol = 5;
-  int32 NetTTTraffic = 6;
-  int32 NetTcpListener = 7;
-  int32 NetConnectCount = 8;
+  cpuInfo CpuAverage = 2;
+  repeated diskTps DiskTps = 3;
+  repeated DiskUsedFS DiskRwPs = 4;
+  repeated DiskInfoN DiskInfoN = 5;
+  NetStat Net = 6;
+}
+
+message Request{}
+
+message RequestConnect{
+  int32 EachNSec = 1;
+  int32 ForTheMSec = 2;
 }
