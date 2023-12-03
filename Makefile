@@ -24,4 +24,4 @@ startClient:
 .PHONY: tests
 tests:
 	@echo "Выполняется запуск тестов."
-	CGO_ENABLED=1 $(GO) test -json -race
+	CGO_ENABLED=1 go test -json -race
