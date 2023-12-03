@@ -1,9 +1,3 @@
-ROOT_DIR        := $(shell pwd)
-TEST_DIR        := $(ROOT_DIR)/_test
-MAIN_DIR        := $(ROOT_DIR)/cmd/app
-SERVER_DIR        := $(ROOT_DIR)/server/cmd
-CLIENT_DIR        := $(ROOT_DIR)/client/cmd
-
 run:
 	@echo "Выполняется запуск приложения."
 	go run cmd/main.go
@@ -14,14 +8,14 @@ proto:
 .PHONY: startServe
 startServe:
 	@echo "Выполняется запуск сервера."
-	go run $(SERVER_DIR)/main.go
+	cd server && go run cmd/main.go
 
 .PHONY: startClient
 startClient:
 	@echo "Выполняется запуск клиента."
-	go run $(CLIENT_DIR)/main.go
+	cd client && go run cmd/main.go
 
 .PHONY: tests
 tests:
 	@echo "Выполняется запуск тестов."
-	CGO_ENABLED=1 go test -json -race
+	cd server && go test -v -cover ./...
